@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Navigation from './components/Navigation';
 import Hero from './components/Hero';
 import Features from './components/Features';
@@ -10,35 +10,41 @@ import FAQ from './components/FAQ';
 import CTA from './components/CTA';
 import Footer from './components/Footer';
 import CartDrawer from './components/CartDrawer';
-import { CartProvider } from './context/CartContext';
-import AuthScreen from './components/AuthScreen';
+import CheckoutPage from './components/CheckoutPage';
+import { CartProvider, useCart } from './context/CartContext';
 
-const App: React.FC = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+const MainContent: React.FC = () => {
+  const { view } = useCart();
 
-  if (!isAuthenticated) {
-    return <AuthScreen onLogin={() => setIsAuthenticated(true)} />;
+  if (view === 'checkout') {
+    return <CheckoutPage />;
   }
 
   return (
-    <CartProvider>
-      <div className="min-h-screen flex flex-col w-full relative" id="top">
-        <Navigation />
-        <CartDrawer />
-        
-        <main className="flex-grow w-full">
-          <Hero />
-          <Features />
-          <About />
-          <Marketplace />
-          <Transparency />
-          <Testimonials />
-          <FAQ />
-          <CTA />
-        </main>
+    <div className="min-h-screen flex flex-col w-full relative" id="top">
+      <Navigation />
+      <CartDrawer />
+      
+      <main className="flex-grow w-full">
+        <Hero />
+        <Features />
+        <About />
+        <Marketplace />
+        <Transparency />
+        <Testimonials />
+        <FAQ />
+        <CTA />
+      </main>
 
-        <Footer />
-      </div>
+      <Footer />
+    </div>
+  );
+};
+
+const App: React.FC = () => {
+  return (
+    <CartProvider>
+      <MainContent />
     </CartProvider>
   );
 };

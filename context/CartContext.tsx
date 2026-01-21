@@ -1,6 +1,8 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 import { Project } from '../types';
 
+type View = 'home' | 'checkout';
+
 interface CartContextType {
   items: Project[];
   addToCart: (product: Project) => void;
@@ -9,6 +11,8 @@ interface CartContextType {
   isCartOpen: boolean;
   setIsCartOpen: (isOpen: boolean) => void;
   cartTotal: number;
+  view: View;
+  setView: (view: View) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -16,6 +20,7 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [items, setItems] = useState<Project[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [view, setView] = useState<View>('home');
 
   const addToCart = (product: Project) => {
     // Avoid duplicates for digital products
@@ -43,7 +48,9 @@ export const CartProvider: React.FC<{ children: ReactNode }> = ({ children }) =>
       clearCart,
       isCartOpen,
       setIsCartOpen,
-      cartTotal
+      cartTotal,
+      view,
+      setView
     }}>
       {children}
     </CartContext.Provider>

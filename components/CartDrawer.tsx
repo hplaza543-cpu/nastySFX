@@ -1,27 +1,17 @@
-import React, { useState } from 'react';
-import { X, Trash2, ArrowRight, CheckCircle, ShoppingBag } from 'lucide-react';
+import React from 'react';
+import { X, Trash2, ArrowRight, ShoppingBag } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import Button from './Button';
 
 const CartDrawer: React.FC = () => {
-  const { items, removeFromCart, isCartOpen, setIsCartOpen, cartTotal, clearCart } = useCart();
-  const [isCheckingOut, setIsCheckingOut] = useState(false);
-  const [checkoutSuccess, setCheckoutSuccess] = useState(false);
+  const { items, removeFromCart, isCartOpen, setIsCartOpen, cartTotal, setView } = useCart();
 
   if (!isCartOpen) return null;
 
   const handleCheckout = () => {
-    setIsCheckingOut(true);
-    // Simulate API call
-    setTimeout(() => {
-      setIsCheckingOut(false);
-      setCheckoutSuccess(true);
-      setTimeout(() => {
-        clearCart();
-        setCheckoutSuccess(false);
-        setIsCartOpen(false);
-      }, 3000);
-    }, 2000);
+    setIsCartOpen(false);
+    setView('checkout');
+    window.scrollTo(0, 0);
   };
 
   return (
@@ -52,17 +42,7 @@ const CartDrawer: React.FC = () => {
 
         {/* Content */}
         <div className="flex-grow overflow-y-auto p-6">
-          {checkoutSuccess ? (
-            <div className="h-full flex flex-col items-center justify-center text-center space-y-6">
-              <div className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center">
-                <CheckCircle className="w-10 h-10 text-green-500" />
-              </div>
-              <div>
-                <h3 className="text-2xl font-bold text-white mb-2">Order Confirmed!</h3>
-                <p className="text-gray-400">Check your email for the download links.</p>
-              </div>
-            </div>
-          ) : items.length === 0 ? (
+          {items.length === 0 ? (
             <div className="h-full flex flex-col items-center justify-center text-center space-y-4 opacity-50">
               <ShoppingBag className="w-12 h-12 text-gray-600" />
               <p className="text-gray-400">Your cart is empty.</p>
@@ -97,7 +77,7 @@ const CartDrawer: React.FC = () => {
         </div>
 
         {/* Footer */}
-        {items.length > 0 && !checkoutSuccess && (
+        {items.length > 0 && (
           <div className="p-6 border-t border-white/10 bg-gray-900/50 backdrop-blur-md">
             <div className="flex justify-between items-center mb-6">
               <span className="text-gray-400">Total</span>
@@ -107,10 +87,9 @@ const CartDrawer: React.FC = () => {
               variant="primary" 
               className="w-full justify-center" 
               onClick={handleCheckout}
-              disabled={isCheckingOut}
             >
-              {isCheckingOut ? 'Processing...' : 'Checkout Securely'}
-              {!isCheckingOut && <ArrowRight className="w-4 h-4 ml-2" />}
+              Proceed to Checkout
+              <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
             <p className="text-center text-xs text-gray-600 mt-4 flex items-center justify-center gap-2">
               <span className="w-2 h-2 rounded-full bg-green-500"></span>
