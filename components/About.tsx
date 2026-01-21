@@ -3,12 +3,12 @@ import { MonitorPlay } from 'lucide-react';
 
 const About: React.FC = () => {
   return (
-    <section id="about" className="py-24 px-6 bg-slate-900/30 border-y border-slate-800/50 relative overflow-hidden scroll-mt-20">
+    <section id="about" className="py-16 md:py-24 px-6 bg-slate-900/30 border-y border-slate-800/50 relative overflow-hidden scroll-mt-20">
       {/* Background glow */}
-      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-96 h-96 bg-indigo-600/10 rounded-full blur-3xl -z-10" />
+      <div className="absolute top-1/2 right-0 -translate-y-1/2 w-64 h-64 md:w-96 md:h-96 bg-indigo-600/10 rounded-full blur-3xl -z-10" />
 
       <div className="max-w-6xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-20 items-center">
           
           {/* Image Column */}
           <div className="relative group order-1 md:order-2">
@@ -39,17 +39,17 @@ const About: React.FC = () => {
 
           {/* Text Column */}
           <div className="order-2 md:order-1">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-xs font-medium uppercase tracking-wider mb-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-indigo-900/30 border border-indigo-500/30 text-indigo-300 text-xs font-medium uppercase tracking-wider mb-6 md:mb-8">
               <MonitorPlay className="w-3.5 h-3.5" />
               <span>The Editor's Desk</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6 leading-tight">
               Built to Inspire, <br />
               <span className="text-slate-600">Not Replace.</span>
             </h2>
             
-            <div className="space-y-6 text-lg text-slate-400 font-light leading-relaxed">
+            <div className="space-y-4 md:space-y-6 text-base md:text-lg text-slate-400 font-light leading-relaxed">
               <p>
                 I'm a solo editor obsessed with the nuances of Valorant motion graphics and VFX. 
                 After years of creating edits, I realized the biggest barrier to entry isn't creativity—it's understanding the <em>how</em>.
@@ -60,10 +60,10 @@ const About: React.FC = () => {
               </p>
             </div>
 
-            <div className="mt-8 flex flex-wrap gap-3">
-                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-sm border border-slate-700">Valorant</span>
-                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-sm border border-slate-700">After Effects</span>
-                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-sm border border-slate-700">VFX Flow</span>
+            <div className="mt-6 md:mt-8 flex flex-wrap gap-3">
+                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-xs md:text-sm border border-slate-700">Valorant</span>
+                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-xs md:text-sm border border-slate-700">After Effects</span>
+                <span className="px-3 py-1 bg-slate-800 rounded-lg text-slate-300 text-xs md:text-sm border border-slate-700">VFX Flow</span>
             </div>
           </div>
 
