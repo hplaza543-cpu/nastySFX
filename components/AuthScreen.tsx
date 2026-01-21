@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import Button from './Button';
-import { ArrowRight, Lock, Mail, User, ShieldCheck, Eye, EyeOff } from 'lucide-react';
+import { ArrowRight, Lock, Mail, User, ShieldCheck, Eye, EyeOff, CheckCircle } from 'lucide-react';
 
 interface AuthScreenProps {
   onLogin: () => void;
@@ -10,15 +10,31 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
+  const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setIsLoading(true);
+    setSuccessMessage(''); // Clear any previous messages
+
     // Simulate API delay/auth process
     setTimeout(() => {
       setIsLoading(false);
-      onLogin();
+      
+      if (isLogin) {
+        // Normal login flow
+        onLogin();
+      } else {
+        // Sign up flow: Switch to login and show success message
+        setIsLogin(true);
+        setSuccessMessage('Account created successfully! Please sign in.');
+      }
     }, 1200);
+  };
+
+  const toggleAuthMode = () => {
+    setIsLogin(!isLogin);
+    setSuccessMessage(''); // Clear success message when switching modes manually
   };
 
   return (
@@ -41,6 +57,13 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
             {isLogin ? 'Enter your credentials to access your workflow.' : 'Create an account to start downloading assets.'}
           </p>
         </div>
+
+        {successMessage && (
+          <div className="mb-6 p-3 bg-green-500/10 border border-green-500/20 rounded-lg flex items-center gap-3 text-green-400 text-sm animate-fade-in">
+            <CheckCircle className="w-4 h-4 flex-shrink-0" />
+            <span>{successMessage}</span>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           {!isLogin && (
@@ -105,7 +128,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
                 {isLoading ? (
                     <span className="flex items-center gap-2">
                         <span className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin"></span>
-                        Authenticating...
+                        {isLogin ? 'Authenticating...' : 'Creating Account...'}
                     </span>
                 ) : (
                     <>
@@ -122,7 +145,7 @@ const AuthScreen: React.FC<AuthScreenProps> = ({ onLogin }) => {
             {isLogin ? "Don't have an account?" : "Already have an account?"}
           </p>
           <button 
-            onClick={() => setIsLogin(!isLogin)} 
+            onClick={toggleAuthMode} 
             className="text-sm font-medium text-white hover:text-indigo-400 transition-colors border border-white/10 hover:border-indigo-500/50 px-6 py-2 rounded-lg bg-gray-800/50"
           >
             {isLogin ? "Create Account" : "Sign In to Account"}

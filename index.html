@@ -44,6 +44,14 @@
       .slide-in-right {
         animation: slideInRight 0.3s ease-out forwards;
       }
+
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fade-in {
+        animation: fadeIn 0.5s ease-out forwards;
+      }
     </style>
     
     <script type="importmap">
@@ -61,5 +69,6 @@
 </head>
   <body class="bg-gray-950 text-gray-200 antialiased selection:bg-white selection:text-black">
     <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
   </body>
 </html>
