@@ -1,7 +1,25 @@
 import React from 'react';
 import Button from './Button';
+import { useCart } from '../context/CartContext';
+import { Project } from '../types';
 
 const CTA: React.FC = () => {
+  const { addToCart } = useCart();
+
+  const bundleProduct: Project = {
+    id: 'bundle-all-access',
+    title: 'All Access Bundle',
+    description: 'The complete creative arsenal. Includes Velocity One, Kinetic Type, Glitch & Distortion, and Atmosphere packs.',
+    price: 3600,
+    tags: ['Bundle', 'All Access', 'Premium'],
+    imageUrl: 'https://picsum.photos/id/48/800/600',
+    features: ['All 4 Packs', 'Lifetime Updates', 'Priority Support']
+  };
+
+  const handleAddToCart = () => {
+    addToCart(bundleProduct);
+  };
+
   return (
     <section className="py-20 md:py-40 px-6 text-center relative overflow-hidden">
       {/* Background ambient glow matching the shopping vibe */}
@@ -17,7 +35,11 @@ const CTA: React.FC = () => {
         </p>
         
         <div className="flex flex-col items-center gap-3 md:gap-4">
-            <Button variant="primary" className="px-10 py-4 md:px-12 md:py-5 text-base md:text-lg rounded-full shadow-[0_0_50px_-12px_rgba(79,70,229,0.5)] hover:shadow-[0_0_50px_-6px_rgba(79,70,229,0.7)] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto">
+            <Button 
+              variant="primary" 
+              className="px-10 py-4 md:px-12 md:py-5 text-base md:text-lg rounded-full shadow-[0_0_50px_-12px_rgba(79,70,229,0.5)] hover:shadow-[0_0_50px_-6px_rgba(79,70,229,0.7)] transition-all duration-300 transform hover:-translate-y-1 w-full sm:w-auto"
+              onClick={handleAddToCart}
+            >
             Get All Access Bundle - ₱3,600
             </Button>
             <p className="text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-[0.2em] mt-2">
