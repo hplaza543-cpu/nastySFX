@@ -18,7 +18,7 @@ const CTA: React.FC = () => {
         
         <div className="flex flex-col items-center gap-4">
             <Button variant="primary" className="px-12 py-5 text-lg rounded-full shadow-[0_0_50px_-12px_rgba(79,70,229,0.5)] hover:shadow-[0_0_50px_-6px_rgba(79,70,229,0.7)] transition-all duration-300 transform hover:-translate-y-1">
-            Get All Access Bundle - $65
+            Get All Access Bundle - ₱3,600
             </Button>
             <p className="text-[10px] md:text-xs text-gray-500 font-medium uppercase tracking-[0.2em] mt-2">
             Includes all 4 packs • Save 25%

@@ -81,7 +81,7 @@ const CartDrawer: React.FC = () => {
                       <p className="text-gray-500 text-xs mt-1">{item.features[0]}</p>
                     </div>
                     <div className="flex justify-between items-center">
-                      <span className="text-indigo-400 font-medium">${item.price}</span>
+                      <span className="text-indigo-400 font-medium">₱{item.price.toLocaleString()}</span>
                       <button 
                         onClick={() => removeFromCart(item.id)}
                         className="text-gray-500 hover:text-red-400 transition-colors p-1"
@@ -101,7 +101,7 @@ const CartDrawer: React.FC = () => {
           <div className="p-6 border-t border-white/10 bg-gray-900/50 backdrop-blur-md">
             <div className="flex justify-between items-center mb-6">
               <span className="text-gray-400">Total</span>
-              <span className="text-2xl font-bold text-white">${cartTotal}</span>
+              <span className="text-2xl font-bold text-white">₱{cartTotal.toLocaleString()}</span>
             </div>
             <Button 
               variant="primary" 

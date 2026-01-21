@@ -6,7 +6,7 @@ export const PROJECTS: Project[] = [
     id: '1',
     title: 'Velocity One: Flow System',
     description: 'A complete project file demonstrating advanced time-remapping curves and seamless scene transitions specifically for Valorant highlights.',
-    price: 24,
+    price: 1350,
     tags: ['Transition', 'Time Remap', 'SFX'],
     imageUrl: 'https://picsum.photos/id/12/800/600',
     features: ['.AEP File', 'SFX Included', 'Curve Presets']
@@ -15,7 +15,7 @@ export const PROJECTS: Project[] = [
     id: '2',
     title: 'Kinetic Type: Operator',
     description: 'Minimalist, impact-driven typography templates. Learn how to sync text to beats without cluttering the screen.',
-    price: 18,
+    price: 1000,
     tags: ['Typography', 'Motion', 'Clean'],
     imageUrl: 'https://picsum.photos/id/20/800/600',
     features: ['10 Text Presets', 'Font Guide', 'Expressions']
@@ -24,7 +24,7 @@ export const PROJECTS: Project[] = [
     id: '3',
     title: 'Glitch & Distortion Pack',
     description: 'Subtle digital artifacts and chromatic aberration effects built entirely with native AE plugins. No third-party tools required.',
-    price: 32,
+    price: 1800,
     tags: ['VFX', 'Distortion', 'No Plugins'],
     imageUrl: 'https://picsum.photos/id/28/800/600',
     features: ['Project File', 'Overlay Assets', 'Tutorial PDF']
@@ -33,7 +33,7 @@ export const PROJECTS: Project[] = [
     id: '4',
     title: 'Atmosphere: Deep Blue',
     description: 'Color grading presets and light leak overlays designed to give your clips a premium, cinematic navy tone.',
-    price: 15,
+    price: 850,
     tags: ['Color', 'Overlays', 'Cinematic'],
     imageUrl: 'https://picsum.photos/id/42/800/600',
     features: ['.FFX Presets', 'LUTs', 'Guide']
@@ -43,7 +43,7 @@ export const PROJECTS: Project[] = [
     id: '5',
     title: 'Resonance: SFX Bundle',
     description: 'A massive library of 500+ impact sounds, whooshes, and risers engineered specifically for montage editing.',
-    price: 45,
+    price: 2500,
     tags: ['SFX', 'Audio', 'Bass'],
     imageUrl: 'https://picsum.photos/id/39/800/600',
     features: ['WAV Files', 'Mixed & Mastered', 'Drag & Drop']
@@ -52,7 +52,7 @@ export const PROJECTS: Project[] = [
     id: '6',
     title: 'UI Audio: Interface Kit',
     description: 'Clean clicks, pops, and digital interface sounds to accompany your motion graphics and HUD overlays.',
-    price: 12,
+    price: 650,
     tags: ['SFX', 'UI', 'Digital'],
     imageUrl: 'https://picsum.photos/id/60/800/600',
     features: ['100+ Sounds', 'Glitch UI', 'Menu Nav']
@@ -61,7 +61,7 @@ export const PROJECTS: Project[] = [
     id: '7',
     title: 'Void: Ambience Textures',
     description: 'Dark, atmospheric drones and pads to fill the silence and build tension in your intros and cinematic sequences.',
-    price: 20,
+    price: 1100,
     tags: ['Ambience', 'Music', 'Texture'],
     imageUrl: 'https://picsum.photos/id/16/800/600',
     features: ['Loopable', 'High Quality', 'Atmospheric']

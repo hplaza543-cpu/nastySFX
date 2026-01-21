@@ -1,6 +1,6 @@
 import React from 'react';
 import { Project } from '../types';
-import { Plus } from 'lucide-react';
+import { Plus, ShoppingCart } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 
 interface ProjectCardProps {
@@ -10,10 +10,18 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   const { addToCart } = useCart();
 
+  const handleAddToCart = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    addToCart(project);
+  };
+
   return (
-    <div className="group cursor-pointer flex flex-col h-full" onClick={() => addToCart(project)}>
+    <div className="group cursor-default flex flex-col h-full">
       {/* Image Area */}
-      <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-gray-900 mb-6 border border-white/5">
+      <div 
+        className="relative aspect-video w-full overflow-hidden rounded-xl bg-gray-900 mb-6 border border-white/5 cursor-pointer" 
+        onClick={() => addToCart(project)}
+      >
         <div className="absolute inset-0 bg-indigo-500/0 group-hover:bg-indigo-500/10 transition-colors z-10 duration-500" />
         <img 
           src={project.imageUrl} 
@@ -21,12 +29,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
           className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-80 group-hover:opacity-100"
         />
         
-        {/* Floating Add to Cart Button */}
+        {/* Floating Add to Cart Button (Top Right) */}
         <button 
-            onClick={(e) => {
-                e.stopPropagation();
-                addToCart(project);
-            }}
+            onClick={handleAddToCart}
             className="absolute top-4 right-4 z-20 opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300 w-10 h-10 bg-white hover:bg-indigo-600 hover:text-white rounded-full flex items-center justify-center text-black shadow-lg transition-colors"
             title="Add to Cart"
         >
@@ -35,14 +40,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
       </div>
 
       {/* Content */}
-      <div className="flex-grow">
+      <div className="flex-grow flex flex-col">
         <div className="flex justify-between items-start gap-4 mb-3">
-          <h3 className="text-xl font-medium text-white group-hover:text-indigo-300 transition-colors">{project.title}</h3>
-          <span className="text-white font-medium bg-gray-900 px-3 py-1 rounded-full text-sm border border-gray-800">
-              ${project.price}
+          <h3 className="text-xl font-medium text-white group-hover:text-indigo-300 transition-colors cursor-pointer" onClick={() => addToCart(project)}>{project.title}</h3>
+          <span className="text-white font-medium bg-gray-900 px-3 py-1 rounded-full text-sm border border-gray-800 whitespace-nowrap">
+              ₱{project.price.toLocaleString()}
           </span>
         </div>
-        <p className="text-gray-500 text-sm line-clamp-2 mb-4">{project.description}</p>
+        <p className="text-gray-500 text-sm line-clamp-2 mb-4 flex-grow">{project.description}</p>
         
         {/* Tags */}
         <div className="flex gap-2 mb-6">
@@ -52,6 +57,15 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
               </span>
           ))}
         </div>
+
+        {/* Visible Add to Cart Button (Bottom) */}
+        <button 
+          onClick={handleAddToCart}
+          className="w-full mt-auto py-3 rounded-lg bg-gray-800 hover:bg-indigo-600 text-white text-sm font-medium transition-colors flex items-center justify-center gap-2 border border-white/5 hover:border-indigo-500/50"
+        >
+          <ShoppingCart className="w-4 h-4" />
+          Add to Cart
+        </button>
       </div>
     </div>
   );
